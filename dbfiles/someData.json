@@ -1,0 +1,14 @@
+{
+    "navigation":["Add Navigation", "Remove Navigation", "Add Content", "Remove Content", "Add/Remove Items"],
+    "mainContent":["Content 1", "Content 2", "Content 3", "Content 4"],
+    "items":[],
+    "footer":[
+            ["REPORT ERROR","PRINT PAGE","FORUM","ABOUT"],
+            [
+                    {"Top 10 Tutorials":["HTML Tutorial","CSS Tutorial","JavaScript Tutorial","W3.CSS Tutorial","Bootstrap Tutorial","SQL Tutorial","PHP Tutorial","jQuery Tutorial","Angular Tutorial","How To Tutorial"]},
+                    {"Top 10 References":["HTML Reference","CSS Reference","JavaScript Reference","W3.CSS Reference","Bootstrap Reference","SQL Reference","PHP Reference","HTML Colors","jQuery Reference","AngularJS Reference"]},
+                    {"Web Certificates":["HTML Certificate","CSS Certificate","JavaScript Certificate","jQuery Certificate","PHP Certificate","Bootstrap Certificate","XML Certificate"]},
+                    {"Top 10 Examples":["HTML Examples","CSS Examples","JavaScript Examples","W3.CSS Examples","Bootstrap Examples","HTML DOM Examples"]}
+            ]    
+        ]
+}

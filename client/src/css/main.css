@@ -1,0 +1,116 @@
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.main{
+    display : flex;
+    flex-direction: column;
+    background: aliceblue;
+}
+.header{
+    display:flex;
+    flex-direction: row;
+    min-height: 100px;
+    background: silver;
+}
+.navigationItems{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.navigationColumnItems{
+    display: flex;
+    flex-direction: column;
+    
+}
+.navigation{
+    margin: 5px;
+    padding: 5px;
+    background: burlywood;
+    border: 1px dotted black;
+}
+.navigation:hover{
+    background: chartreuse;
+    cursor: pointer;
+}
+.body{
+    display:flex;
+    flex-direction: row;
+    background: yellow;
+}
+.left{
+    display:flex;
+    width: 25%;
+    background: wheat;
+}
+.center{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 50%;
+    background: turquoise;
+}
+.content{
+    display:inline-flex;
+    flex-direction: row;
+    
+    min-width:150px;
+    height: 150px;
+    border: 1px solid black;
+}
+.right{
+    display:flex;
+    width: 25%;
+    background: teal;
+}
+.footer{
+    display:flex;
+    flex-direction: column;
+    background: rgb(238, 235, 228);
+}
+.footerSections{
+    border-bottom: 1px dotted black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+}
+.footerSubSectionHeader{
+    background:lavender;
+    margin-top: 5px;
+}
+.footerSubSectionHeader span {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+    .body {
+        background-color: lightgreen;
+        display:block;
+    }
+    .left{
+        display: none;
+        width: 100%;
+        height: 20%;
+    }
+    .center{
+        display: block;
+        width: 100%;
+        height: 60%;
+    }
+    .right{
+        display: block;
+        width: 100%;
+        height: 20%;
+    }
+}
