@@ -6,7 +6,6 @@ const getJsonDataFromFile = function(file){
             if (err){
                 rej(err);
             } 
-            console.log(JSON.parse(data));
             res(JSON.parse(data));
         });
     })

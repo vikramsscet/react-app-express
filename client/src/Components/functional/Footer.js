@@ -18,11 +18,7 @@ const Footer = ({footer})=>{
 const FooterSection = ({footerSec}) => {
     return (
         footerSec.map(section => {
-            if((typeof section) === "string"){
-                return <FooterSubSec data={section} key={Math.floor(Math.random()*1000)} />
-            }else{
-                return <FooterSubSec data={section} key={Math.floor(Math.random()*1000)} />
-            }
+                return <FooterSubSec data={section} key={Math.floor(Math.random()*100000)} />
         })
     );
 }
@@ -51,7 +47,7 @@ const FooterSubSec = ({data}) => {
 const FooterSubSecContent = ({data}) => {
     return (
         data.map(subData => {
-            return <div key={Math.floor(Math.random()*1000)}>{subData}</div>
+            return <div key={Math.floor(Math.random()*100000)}>{subData}</div>
         })
     );
 };

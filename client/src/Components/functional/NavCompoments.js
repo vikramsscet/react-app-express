@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-const Navigation = ({navigation}) => {
+import { Route } from "react-router-dom";
+const NavComponents = ({navigation}) => {
     navigation = navigation || [];
     return(
         navigation.map(data => {
@@ -8,7 +8,8 @@ const Navigation = ({navigation}) => {
              let component = data.component;
              let navString = Object.keys(navigation)[0];
             let navLink = navigation[navString];
-            return <div key={Math.floor(Math.random()*1000)} className="navigation"><Link to={navLink}>{navString}</Link></div>
+            console.log(navString, navLink);
+            return <Route key={Math.floor(Math.random()*1000)} path={navLink} component={} />
         })
     );
 }

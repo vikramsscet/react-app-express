@@ -1,0 +1,76 @@
+@import url("grid.css");
+
+.fieldSet{
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    box-shadow: 5px 5px silver;
+    
+}
+.heading{
+    background: seashell;
+    box-shadow: 5px 5px gray;
+    margin: 10px;
+    border-radius: 25px;
+}
+.formRow{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: flex-start;
+    box-shadow: 5px 5px silver;
+    border-radius: 25px;
+    padding: 5px;
+}
+.leftEl{
+    text-align: left;
+}
+.formControls{
+    background:silver;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 5px;
+}
+.elMessage{
+    
+    font-size: x-small;
+    color: red;
+    display: block;
+    margin-top: 6px;
+}
+button {
+    border-radius: 10px;
+    border: none;
+    color:black;
+    text-align: center;
+    padding: 5px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+button:hover span {
+    padding-right: 25px;
+}
+  
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}

@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import '../../css/main.css';
 import {Content} from '../functional/Content';
 import {Navigation} from '../functional/Navigation';
 import {Footer} from '../functional/Footer';
+import {AddNavigation} from "../functional/subComponents/AddNavigation";
+import {RemoveNavigation} from "../functional/subComponents/RemoveNavigation";
+import AddContent from './AddContent';
 const fetch = require("node-fetch");
 class Main extends Component{
     constructor(){
@@ -16,7 +20,7 @@ class Main extends Component{
         xhr.responseType = 'json';
 
         xhr.onload = function() {
-            console.log(xhr.response);
+            
             self.setState(xhr.response);
         };
 
@@ -27,7 +31,9 @@ class Main extends Component{
         xhr.send();    
     }
     render(){
+        let content=this.state.mainContent;
         return(
+            <Router>
             <div className="main">
                 <div className="header">
                     <div className="navigationItems">
@@ -41,7 +47,16 @@ class Main extends Component{
                         </div>
                     </div>
                     <div className="center">
-                        <Content content={this.state.mainContent} />
+                        
+                        <Route exact 
+                            path="/"
+                            render={() => (
+                                <Content content={content} />
+                              )}  
+                        />
+                        <Route path="/addNavigation" component={AddNavigation} />
+                        <Route path="/removeNavigation" component={RemoveNavigation} />
+                        <Route path="/addContent" component={AddContent} />
                     </div>
                     <div className="right">Right</div>
                 </div>
@@ -49,6 +64,10 @@ class Main extends Component{
                     <Footer footer={this.state.footer} />
                 </div>
             </div>
+            
+            
+
+            </Router>
         );
     }
 }

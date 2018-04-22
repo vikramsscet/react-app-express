@@ -1,5 +1,30 @@
 {
-    "navigation":["Add Navigation", "Remove Navigation", "Add Content", "Remove Content", "Add/Remove Items"],
+    "navigation":[
+                {
+                        "nav":{"Home":"/"},
+                        "component":"Content"                                
+                },
+                {
+                        "nav":{"Add Navigation":"/addNavigation"},
+                        "component":"AddNavigation"                                
+                },
+                {
+                        "nav":{"Remove Navigation":"/removeNavigation"},
+                        "component":"RemoveNavigation"
+                },
+                {
+                        "nav":{"Add User":"/addContent"}, 
+                        "component":"AddContent"
+                },
+                {
+                        "nav":{"Remove Content":"removeContent"},
+                        "component":"RemoveContent"
+                },
+                {
+                        "nav":{"Add/Remove Items":"addRemoveItems"},
+                        "component":"AddRemoveItems"
+                }
+        ],
     "mainContent":["Content 1", "Content 2", "Content 3", "Content 4"],
     "items":[],
     "footer":[

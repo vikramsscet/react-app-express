@@ -1,6 +1,7 @@
 import React from 'react';
 var _ = require('lodash');
 const Content = ({content}) => {
+    console.log("-------",content);
     content = content || [];
     return(
         content.map(data => {
