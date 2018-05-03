@@ -14,19 +14,21 @@
 .main{
     display : flex;
     flex-direction: column;
-    background: aliceblue;
+    
 }
 .header{
     display:flex;
     flex-direction: row;
     min-height: 100px;
-    background: silver;
+    justify-content: flex-end;
+    background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
 }
 .navigationItems{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-end;
 }
 .navigationColumnItems{
     display: flex;
@@ -36,8 +38,6 @@
 .navigation{
     margin: 5px;
     padding: 5px;
-    background: burlywood;
-    border: 1px dotted black;
 }
 .navigation:hover{
     background: chartreuse;
@@ -46,7 +46,8 @@
 .body{
     display:flex;
     flex-direction: row;
-    background: yellow;
+    align-content: center;
+    justify-content: center;
 }
 .left{
     display:flex;
@@ -57,7 +58,7 @@
     display:flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 65%;
+    min-width: 80%; 
     background:white;
     min-height: 400px;
 }
@@ -93,7 +94,6 @@
 .footerSubSectionHeader span {
     font-weight: bold;
 }
-
 @media screen and (max-width: 480px) {
     .body {
         background-color: lightgreen;
@@ -113,5 +113,16 @@
         display: block;
         width: 100%;
         height: 20%;
+    }
+    .header{
+        min-height: 50px;
+        background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+    }
+    .navigationItems{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
     }
 }

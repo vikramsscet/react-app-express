@@ -1,5 +1,5 @@
 import React from 'react';
-var _ = require('lodash');
+//var _ = require('lodash');
 const Content = ({content}) => {
     console.log("-------",content);
     content = content || [];

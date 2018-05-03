@@ -1,5 +1,27 @@
 @import url("grid.css");
-
+.formBody{
+    width: 100%;
+    position: relative;
+}
+.alertMsg{
+    position: absolute;
+    width: 80%;
+    height: 50px;
+    left: 20px;
+    top:40px;
+    border-radius: 25px;
+    background: yellow;
+    box-shadow: 5px 5px gray;
+    justify-content: center;
+    align-items: center;
+    opacity: 1.0;
+    transition: height 500ms 0ms, opacity 500ms 500ms;
+}
+.hide {
+    transition: height 500ms 500ms, opacity 500ms 0ms;
+    opacity: 0.0;
+    height: 0px;
+}
 .fieldSet{
     border: 1px solid black;
     border-radius: 25px;

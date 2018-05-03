@@ -41,11 +41,11 @@ class Main extends Component{
                     </div>
                 </div>
                 <div className="body">
-                    <div className="left">
+                    {/* <div className="left">
                         <div className="navigationColumnItems">
                             <Navigation navigation={this.state.navigation} />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="center">
                         
                         <Route exact 
@@ -58,7 +58,7 @@ class Main extends Component{
                         <Route path="/removeNavigation" component={RemoveNavigation} />
                         <Route path="/addContent" component={AddContent} />
                     </div>
-                    <div className="right">Right</div>
+                    {/* <div className="right">Right</div> */}
                 </div>
                 <div className="footer">
                     <Footer footer={this.state.footer} />

@@ -19,6 +19,31 @@ app.get('/api/state', (req, res) =>{
     res.send(err);
   });
 });
+app.delete('/api/user/delete/:email',(req,res)=>{
+  var email = req.params.email;
+  console.log('id---> ', email);
+  var con = mongoApi.createConnection();
+  con.getConnection().then(dbo=>{
+    return mongoApi.deleteBy(dbo, "user","email",email);
+  }).then(navData=>{
+    //console.log("navData ********* ",navData);
+    con.closeConnection();
+    res.send(navData);
+  }).catch(err=>{
+    res.send(err);
+  });
+});
+app.get('/api/user/getAll',(req,res)=>{
+  var con = mongoApi.createConnection();
+  con.getConnection().then(dbo=>{
+    return mongoApi.readAllDataFromCollection(dbo, "user");
+  }).then(userData=>{
+    con.closeConnection();
+    res.send(userData);
+  }).catch(err=>{
+    res.send(err);
+  });
+});
 app.post('/api/user/add',(req,res)=>{
   var body = '';
         req.on('data', function (data) {
@@ -44,13 +69,14 @@ app.post('/api/user/add',(req,res)=>{
                       if(data==null){
                         resolve(mongoApi.writeToCollection(dbObj, "user", formData));
                       }else{
-                        resolve(data);
+                        resolve("User already exists");
                       }
                     }).catch(err=>{
                       reject(err);
                     });
                 });
                 let result = await promise;
+                console.log(result);
                 res.send(result);
             }
             f();
