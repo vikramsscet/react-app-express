@@ -2,43 +2,68 @@ import React, {Component} from 'react';
 import Table from '../functional/Table';
 import '../../css/form.css';
 import '../../css/table.css';
+import Util from '../../js/Utility';
+import {SmallDialog} from '../functional/SmallDialog/SmallDialog';
+import Wait from '../functional/wait/wait';
 class AddContent extends Component{
     constructor(){
         super();
-        this.state = {};
+        this.state = {
+            dialogStatus:{'display':'none'}
+        };
+        this.waitToggle = false;
     }
     componentDidMount(){
         this.getUsers();
     }
-    getUsers(){
+    async getUsers(){
         var self = this;
         var fun = function(responseText){
             this.state.users = JSON.parse(responseText);
             var random = Math.random();
             this.setState({...this.state, random});
         }
-        this.XMLHttpRequestApi('GET','/api/user/getAll', fun, self);
+        await Util.XMLHttpRequestApi('GET','/api/user/getAll', fun, self);
+        console.log("after table is loaded...");
     }
-    removeUser(el, context){
-        var self = this;
+    removeUser(el){
+        let self = this;
         var id = el.target.value;
+        let dialogEl = document.getElementsByClassName("outer")[0];
+        dialogEl.style.display="block";
+        let f = async function(event){
+            if(event.target.tagName==="BUTTON"){
+                console.log(event.target);
+                if(event.target.id==='cancel'){
+                    dialogEl.removeEventListener("click",f);
+                    event.target.parentElement.parentElement.style.display = "none";
+                }if(event.target.id==='ok'){
+                    self.toggleWait();
+                    await self.removeUserOnConfirm(id);
+                    event.target.parentElement.parentElement.style.display = "none";
+                    self.toggleWait();
+                }
+            }
+        }
+        dialogEl.addEventListener("click",f);
+
+    }
+    toggleWait(){
+        if(this.waitToggle){
+            document.getElementsByClassName("waitPage")[0].style.display = 'none';
+            this.waitToggle = false;
+        }else{
+            document.getElementsByClassName("waitPage")[0].style.display = "block";
+            this.waitToggle = true;
+        }
+    }
+    async removeUserOnConfirm(id){
+        var self = this;
         var fun = function(){
             self.getUsers.call(self);
         }
-        this.XMLHttpRequestApi("DELETE",`/api/user/delete/${id}`, fun, self);
-    }
-    XMLHttpRequestApi(method, url, callback, context=this, data={}){
-        var xhr = new XMLHttpRequest();
-        xhr.open(method, url, true);
-        xhr.onload = function () {
-            if(this.status === 200){
-                callback.call(context,this.responseText);
-            }
-        };
-        xhr.onerror = function(err) {
-            console.log("Booo");
-        };
-        xhr.send(JSON.stringify(data));
+        await Util.XMLHttpRequestApi("DELETE",`/api/user/delete/${id}`, fun, self);
+        console.log("after remove operation....");
     }
     resetMessage(){
         var msgEls = document.getElementsByClassName('elMessage');
@@ -50,14 +75,14 @@ class AddContent extends Component{
         this.resetMessage();
         var form = document.getElementById('form').querySelectorAll('input');
         form.forEach(el=>{
-            if(el.type=='radio'){
+            if(el.type==='radio'){
                 el.checked=false;
             }else{
                 el.value='';
             }
         });
     }
-    submit(){
+    async submit(){
         this.resetMessage();
         let formData = {};
         var data = new FormData();
@@ -84,11 +109,11 @@ class AddContent extends Component{
                         data.append(`${el.id}`, el.value)
                     }else{
                         validationFailed = true;
-                        el.parentElement.nextElementSibling.innerText="Please enter Password"    
+                        el.parentElement.nextElementSibling.innerText="Please enter Password";
                     }
                 }else if(el.id==='cpassword' && el.value !== formData['password']){
                     validationFailed = true;
-                    el.parentElement.nextElementSibling.innerText="Password did not matched"
+                    el.parentElement.nextElementSibling.innerText="Password did not matched";
                 }
             }
         });
@@ -97,14 +122,16 @@ class AddContent extends Component{
             document.getElementsByName('gender')[0].parentElement.nextElementSibling.innerText="Please select Gender"; 
         }
         if(!validationFailed){
+            this.toggleWait();
             var self = this;
             var fun = function(responseText){
                 this.showHideAlert(responseText);
                 this.resetMessage();
                 this.reset();
-                this.getUsers();
             }
-            this.XMLHttpRequestApi('POST','/api/user/add', fun, self, formData);
+            await Util.XMLHttpRequestApi('POST','/api/user/add', fun, self, formData);
+            this.getUsers();
+            this.toggleWait();
         }
     }
     showHideAlert(responseText){
@@ -122,6 +149,8 @@ class AddContent extends Component{
                 <Table 
                     users = {this.state.users} 
                     removeUser = {this.removeUser.bind(this)} />
+                <SmallDialog styles = {this.state.dialogStatus}/>
+                <Wait />
             </div>    
         )
     }

@@ -94,7 +94,7 @@ const setOutput = function(val, clear){
 }
 
 const numbersClickHandler = function(event){
-    if(event.target.nodeName=="BUTTON" && event.target.parentElement.id==="numbers" && event.target.id != "clear"){
+    if(event.target.nodeName==="BUTTON" && event.target.parentElement.id==="numbers" && event.target.id !== "clear"){
         let number = event.target.innerText; 
         setOutput(number);
     }

@@ -7,7 +7,7 @@ import {Footer} from '../functional/Footer';
 import {AddNavigation} from "../functional/subComponents/AddNavigation";
 import {RemoveNavigation} from "../functional/subComponents/RemoveNavigation";
 import AddContent from './AddContent';
-const fetch = require("node-fetch");
+//const fetch = require("node-fetch");
 class Main extends Component{
     constructor(){
         super();

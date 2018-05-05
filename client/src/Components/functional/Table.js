@@ -31,7 +31,7 @@ function TBody({users, removeUser}){
 }
 function TR({user, removeUser}){
     return(
-        <tr><td>{user.fName}</td> <td>{user.lName}</td> <td>{user.gender}</td> <td>{user.email}</td><td><button value={user['email']} onClick={removeUser}>Delete</button></td></tr>
+        <tr><td>{user.fName}</td><td>{user.lName}</td><td>{user.gender}</td><td>{user.email}</td><td><button value={user['email']} onClick={removeUser}>Delete</button></td></tr>
     );
 }
 
